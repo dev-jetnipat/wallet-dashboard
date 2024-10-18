@@ -188,7 +188,7 @@ const HomeView = () => {
               <h1 className="text-2xl font-bold">Binance Wallet</h1>
               <Separator className="mt-4 mb-6 bg-gray-400" />
               <div className="flex justify-center items-center">
-                <div className="grid grid-cols-4 gap-7">
+                <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-7">
                   {bnbWalletFilter.map((wallet, index) => (
                     <WalletCard
                       key={index}
@@ -206,7 +206,7 @@ const HomeView = () => {
               <h1 className="text-2xl font-bold">Sepolia Wallet</h1>
               <Separator className="mt-4 mb-6 bg-gray-400" />
               <div className="flex justify-center items-center">
-                <div className="grid grid-cols-4 gap-7">
+                <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-7">
                   {sepoliaWalletFilter.map((wallet, index) => (
                     <WalletCard
                       key={index}
