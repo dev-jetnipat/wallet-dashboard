@@ -60,8 +60,6 @@ const HomeView = () => {
       LOCAL_STORAGE_KEY.WALLET,
       JSON.stringify(updatedWallet)
     );
-
-    fetchBalance();
   };
 
   const bnbWalletFilter = useMemo(() => {
