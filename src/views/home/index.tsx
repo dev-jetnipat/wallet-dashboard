@@ -66,7 +66,7 @@ const HomeView = () => {
       </div>
 
       <div className="flex items-center space-x-1">
-        <div>Chain :</div>
+        <div className="font-bold">Chain :</div>
         <ToggleGroup
           type="multiple"
           variant="outline"
@@ -75,17 +75,23 @@ const HomeView = () => {
             setChainFilter(value);
           }}
         >
-          <ToggleGroupItem value={chainList.BNBTestnet.chainId.toString()}>
+          <ToggleGroupItem
+            value={chainList.BNBTestnet.chainId.toString()}
+            className="bg-white"
+          >
             {chainList.BNBTestnet.symbol}
           </ToggleGroupItem>
-          <ToggleGroupItem value={chainList.Sepolia.chainId.toString()}>
+          <ToggleGroupItem
+            value={chainList.Sepolia.chainId.toString()}
+            className="bg-white"
+          >
             {chainList.Sepolia.symbol}
           </ToggleGroupItem>
         </ToggleGroup>
       </div>
 
       <div className="flex items-center space-x-1">
-        <div>Wallet type :</div>
+        <div className="font-bold">Wallet type :</div>
         <ToggleGroup
           type="multiple"
           variant="outline"
@@ -95,7 +101,7 @@ const HomeView = () => {
           }}
         >
           {Object.entries(WalletType).map(([key, value]) => (
-            <ToggleGroupItem key={key} value={key}>
+            <ToggleGroupItem variant="active" key={key} value={key}>
               {value}
             </ToggleGroupItem>
           ))}
