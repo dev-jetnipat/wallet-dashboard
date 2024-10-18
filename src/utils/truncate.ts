@@ -1,6 +1,6 @@
 export const truncateWalletAddress = (
   address: string,
-  startLength = 4,
+  startLength = 5,
   endLength = 4
 ) => {
   if (!address || address.length < startLength + endLength) {

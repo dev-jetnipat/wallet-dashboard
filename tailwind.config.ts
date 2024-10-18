@@ -57,6 +57,10 @@ const config: Config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      backgroundImage: {
+        eth: "url('/eth-bg.jpg')",
+        bnb: "url('/bnb-bg.jpeg')",
+      },
     },
   },
   // eslint-disable-next-line @typescript-eslint/no-require-imports

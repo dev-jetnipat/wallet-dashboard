@@ -65,7 +65,8 @@ const HomeView = () => {
         <SubscribeWalletDialog fetchBalance={fetchBalance} />
       </div>
 
-      <div className="flex">
+      <div className="flex items-center space-x-1">
+        <div>Chain :</div>
         <ToggleGroup
           type="multiple"
           variant="outline"
@@ -83,7 +84,8 @@ const HomeView = () => {
         </ToggleGroup>
       </div>
 
-      <div className="flex">
+      <div className="flex items-center space-x-1">
+        <div>Wallet type :</div>
         <ToggleGroup
           type="multiple"
           variant="outline"
@@ -101,7 +103,7 @@ const HomeView = () => {
       </div>
 
       {chainFilter.includes(chainList.BNBTestnet.chainId.toString()) && (
-        <div className="grid grid-cols-2 gap-3 justify-items-center">
+        <div className="flex gap-3 justify-items-center">
           {bnbWallets.map((wallet, index) => (
             <WalletCard
               key={index}
@@ -113,7 +115,7 @@ const HomeView = () => {
       )}
 
       {chainFilter.includes(chainList.Sepolia.chainId.toString()) && (
-        <div className="grid grid-cols-2 gap-3 justify-items-center">
+        <div className="flex gap-3 justify-items-center">
           {sepoliaWallets.map((wallet, index) => (
             <WalletCard
               key={index}
