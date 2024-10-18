@@ -16,7 +16,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "Wallet Dashboard",
-  description: "A dashboard for display wallet",
+  description: "A dashboard display wallet",
 };
 
 export default function RootLayout({
