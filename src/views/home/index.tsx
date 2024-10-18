@@ -7,7 +7,7 @@ import {
   WalletDetails,
   WalletType,
 } from "@/interfaces/wallet.interface";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 import { chainList } from "@/constants/chain";
@@ -20,9 +20,11 @@ const HomeView = () => {
   const [bnbWallets, setBnbWallets] = useState<WalletDetails[]>([]);
   const [sepoliaWallets, setSepoliaWallets] = useState<WalletDetails[]>([]);
 
-  const [chainFilter, setChainFilter] = useState<string[]>([]);
+  const [chainFilter, setChainFilter] = useState<string[]>([
+    chainList.BNBTestnet.chainId.toString(),
+  ]);
 
-  const [walletTypeFilter, setWalletTypeFilter] = useState<WalletType[]>([]);
+  const [walletTypeFilter, setWalletTypeFilter] = useState<string[]>([]);
 
   const fetchBalance = async () => {
     const wallet = localStorage.getItem(LOCAL_STORAGE_KEY.WALLET);
@@ -53,6 +55,30 @@ const HomeView = () => {
 
     fetchBalance();
   };
+
+  const bnbWalletFilter = useMemo(() => {
+    const result = bnbWallets.filter((wallet) =>
+      walletTypeFilter.includes(wallet.type)
+    );
+
+    if (!result.length) {
+      return bnbWallets;
+    }
+
+    return result;
+  }, [bnbWallets, walletTypeFilter]);
+
+  const sepoliaWalletFilter = useMemo(() => {
+    const result = sepoliaWallets.filter((wallet) =>
+      walletTypeFilter.includes(wallet.type)
+    );
+
+    if (!result.length) {
+      return sepoliaWallets;
+    }
+
+    return result;
+  }, [sepoliaWallets, walletTypeFilter]);
 
   useEffect(() => {
     fetchBalance();
@@ -91,11 +117,11 @@ const HomeView = () => {
           variant="outline"
           value={walletTypeFilter}
           onValueChange={(value) => {
-            setWalletTypeFilter(value as WalletType[]);
+            setWalletTypeFilter(value);
           }}
         >
           {Object.entries(WalletType).map(([key, value]) => (
-            <ToggleGroupItem key={key} value={key}>
+            <ToggleGroupItem key={key} value={value}>
               {value}
             </ToggleGroupItem>
           ))}
@@ -104,7 +130,7 @@ const HomeView = () => {
 
       {chainFilter.includes(chainList.BNBTestnet.chainId.toString()) && (
         <div className="flex gap-3 justify-items-center">
-          {bnbWallets.map((wallet, index) => (
+          {bnbWalletFilter.map((wallet, index) => (
             <WalletCard
               key={index}
               wallet={wallet}
@@ -116,7 +142,7 @@ const HomeView = () => {
 
       {chainFilter.includes(chainList.Sepolia.chainId.toString()) && (
         <div className="flex gap-3 justify-items-center">
-          {sepoliaWallets.map((wallet, index) => (
+          {sepoliaWalletFilter.map((wallet, index) => (
             <WalletCard
               key={index}
               wallet={wallet}
