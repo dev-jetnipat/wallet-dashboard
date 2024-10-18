@@ -92,7 +92,7 @@ const SubscribeWalletDialog = ({
   return (
     <Dialog open={subscribeDialogOpen} onOpenChange={setSubscribeDialogOpen}>
       <DialogTrigger asChild>
-        <Button>Subscribe wallet</Button>
+        <Button>🚀 Subscribe wallet</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

@@ -113,40 +113,47 @@ const HomeView = () => {
     <div className="p-10 flex flex-col space-y-3">
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-extrabold">Dashboard</h1>
-        <SubscribeWalletDialog fetchBalance={fetchBalance} />
+        <div className="flex items-center space-x-3">
+          <Button onClick={() => fetchBalance()}>
+            <RefreshCw className={cn(loading ? "animate-spin" : "")} />
+          </Button>
+          <SubscribeWalletDialog fetchBalance={fetchBalance} />
+        </div>
       </div>
 
-      <div className="flex items-center">
-        <div className="bg-white flex items-center space-x-1 p-3 rounded-lg">
-          <div className="font-bold">Chain :</div>
-          <ToggleGroup
-            type="multiple"
-            variant="outline"
-            value={chainFilter}
-            onValueChange={(value) => {
-              setChainFilter(value);
-            }}
-          >
-            <ToggleGroupItem
-              value={chainList.BNBTestnet.chainId.toString()}
-              className="bg-white min-w-24 data-[state=on]:bg-yellow-400 data-[state=on]:text-black data-[state=on]:font-semibold"
+      <div className="flex">
+        <div className="flex flex-col bg-white p-3 rounded-lg">
+          <div className="font-bold mb-2">⚙️ Chain</div>
+          <div className="flex flex-col items-center space-x-1">
+            <ToggleGroup
+              type="multiple"
+              variant="outline"
+              value={chainFilter}
+              onValueChange={(value) => {
+                setChainFilter(value);
+              }}
             >
-              {chainList.BNBTestnet.symbol}
-            </ToggleGroupItem>
-            <ToggleGroupItem
-              value={chainList.Sepolia.chainId.toString()}
-              className="bg-white min-w-24 data-[state=on]:bg-blue-500 data-[state=on]:text-white data-[state=on]:font-semibold"
-            >
-              {chainList.Sepolia.symbol}
-            </ToggleGroupItem>
-          </ToggleGroup>
+              <ToggleGroupItem
+                value={chainList.BNBTestnet.chainId.toString()}
+                className="bg-white min-w-24 data-[state=on]:bg-yellow-400 data-[state=on]:text-black data-[state=on]:font-semibold"
+              >
+                {chainList.BNBTestnet.symbol}
+              </ToggleGroupItem>
+              <ToggleGroupItem
+                value={chainList.Sepolia.chainId.toString()}
+                className="bg-white min-w-24 data-[state=on]:bg-blue-500 data-[state=on]:text-white data-[state=on]:font-semibold"
+              >
+                {chainList.Sepolia.symbol}
+              </ToggleGroupItem>
+            </ToggleGroup>
+          </div>
         </div>
       </div>
 
       <div className="flex justify-between items-center">
-        <div className="flex items-center">
-          <div className="bg-white flex items-center space-x-1 p-3 rounded-lg">
-            <div className="font-bold">Wallet type :</div>
+        <div className="flex flex-col bg-white p-3 rounded-lg">
+          <div className="font-bold mb-2">💰 Wallet type</div>
+          <div className="flex flex-col items-center space-x-1 ">
             <ToggleGroup
               type="multiple"
               variant="outline"
@@ -154,6 +161,7 @@ const HomeView = () => {
               onValueChange={(value) => {
                 setWalletTypeFilter(value);
               }}
+              className="grid grid-cols-2 md:grid-cols-5 gap-2"
             >
               {Object.entries(WalletType).map(([key, value]) => (
                 <ToggleGroupItem
@@ -169,11 +177,6 @@ const HomeView = () => {
               ))}
             </ToggleGroup>
           </div>
-        </div>
-        <div>
-          <Button onClick={fetchBalance}>
-            <RefreshCw className={cn(loading ? "animate-spin" : "")} />
-          </Button>
         </div>
       </div>
 

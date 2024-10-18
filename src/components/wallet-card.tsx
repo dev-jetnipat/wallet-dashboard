@@ -64,11 +64,13 @@ const WalletCard = ({ wallet, handleRemoveWallet }: WalletCardProps) => {
 
   return (
     <div className="flex w-full">
-      <Card className={cn("max-w-[375px] w-full shadow-xl relative", cardBgColor())}>
+      <Card
+        className={cn("max-w-[375px] w-full shadow-xl relative", cardBgColor())}
+      >
         <div>
           <div
             onClick={() => handleRemoveWallet(wallet.address)}
-            className="absolute -top-3 -right-3 rounded-full h-8 w-8 flex items-center justify-center bg-red-500"
+            className="absolute cursor-pointer -top-3 -right-3 rounded-full h-8 w-8 flex items-center justify-center bg-red-500 hover:bg-red-700"
           >
             <X className="h-5 w-5 text-white" />
           </div>
